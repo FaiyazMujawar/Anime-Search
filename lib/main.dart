@@ -1,4 +1,4 @@
-import 'package:anime_search/screens/HomePage.dart';
+import 'package:anime_search/screens/MainScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: MainScreen(),
     );
   }
 }
