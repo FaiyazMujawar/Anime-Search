@@ -1,6 +1,8 @@
-import 'package:anime_search/Constants.dart';
+import 'package:anime_search/screens/AnimePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import '../Constants.dart';
 
 class AnimeCard extends StatefulWidget {
   final Map<String, dynamic> anime;
@@ -69,12 +71,22 @@ class _AnimeCardState extends State<AnimeCard> {
                 ),
               ),
               IconButton(
-                  icon: Icon(
-                    SimpleLineIcons.arrow_right_circle,
-                    color: Colors.blue.shade400,
-                    size: 32,
-                  ),
-                  onPressed: null)
+                icon: Icon(
+                  SimpleLineIcons.arrow_right_circle,
+                  color: Colors.blue.shade400,
+                  size: 32,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AnimePage(
+                        id: anime['id'],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

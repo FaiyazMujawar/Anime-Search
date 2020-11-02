@@ -1,8 +1,8 @@
-// import 'package:anime_search/data_access/AnimeData.dart';
-import 'package:anime_search/Constants.dart';
-import 'package:anime_search/components/AnimeCard.dart';
-import 'package:anime_search/data_access/AnimeData.dart';
 import 'package:flutter/material.dart';
+
+import '../Constants.dart';
+import '../components/AnimeCard.dart';
+import '../data_access/AnimeData.dart';
 
 class TrendingPage extends StatefulWidget {
   @override
@@ -10,11 +10,27 @@ class TrendingPage extends StatefulWidget {
 }
 
 class _TrendingPageState extends State<TrendingPage> {
-  List<Widget> _topAnimes;
+  Widget _body;
   @override
   void initState() {
     super.initState();
-    _topAnimes = <Widget>[
+    _body = Container();
+    buildTopAnimesPage();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        child: _body,
+      ),
+    );
+  }
+
+  Future<void> buildTopAnimesPage() async {
+    List<Map<String, dynamic>> animes = await getTopAnimes();
+
+    List<Widget> topAnimesPageContents = <Widget>[
       Padding(
         padding: EdgeInsets.fromLTRB(20, 20, 15, 10),
         child: Text(
@@ -22,32 +38,24 @@ class _TrendingPageState extends State<TrendingPage> {
           style: kHeadingTextStyle,
         ),
       ),
-      SizedBox(
-        height: 20,
-      ),
     ];
-    setTopAnimes();
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: ListView.builder(
-          itemCount: _topAnimes.length,
-          itemBuilder: (context, index) {
-            return _topAnimes[index];
-          },
-        ),
-      ),
-    );
-  }
-
-  Future<void> setTopAnimes() async {
-    List<Map<String, dynamic>> animes = await getTopAnimes();
     for (var anime in animes) {
-      _topAnimes.add(AnimeCard(anime: anime));
+      topAnimesPageContents.add(
+        AnimeCard(
+          anime: anime,
+        ),
+      );
     }
-    setState(() {});
+    setState(
+      () {
+        _body = ListView.builder(
+          itemCount: topAnimesPageContents.length,
+          itemBuilder: (context, index) {
+            return topAnimesPageContents[index];
+          },
+        );
+      },
+    );
   }
 }

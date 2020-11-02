@@ -1,8 +1,9 @@
-import 'package:anime_search/screens/SearchScreen.dart';
-import 'package:anime_search/screens/TopAnimesPage.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import '../screens/SearchScreen.dart';
+import '../screens/TopAnimesPage.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -36,17 +37,13 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 TrendingPage(),
                 SearchScreen(),
-                Container(
-                  child: Center(
-                    child: Text("Favorites"),
-                  ),
-                )
               ],
             ),
           ),
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           _currentIndex = index;
@@ -55,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Feather.bar_chart_2),
+            icon: Icon(Ionicons.md_trophy),
             title: Text("Top Charts"),
             activeColor: Colors.purple.shade500,
             textAlign: TextAlign.center,
@@ -63,13 +60,7 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavyBarItem(
             icon: Icon(Feather.search),
             title: Text("Search"),
-            activeColor: Colors.blue.shade500,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text("Favorites"),
-            activeColor: Colors.red.shade500,
+            activeColor: Colors.orange.shade800,
             textAlign: TextAlign.center,
           ),
         ],

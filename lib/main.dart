@@ -1,4 +1,4 @@
-import 'package:anime_search/screens/MainScreen.dart';
+import 'screens/MainScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

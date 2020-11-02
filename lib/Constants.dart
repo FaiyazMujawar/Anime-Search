@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-/* Anime Card */
-
 const kHeadingTextStyle = TextStyle(
   fontSize: 30,
   fontWeight: FontWeight.w900,
@@ -20,18 +18,22 @@ const kTitleBoxDecoration = BoxDecoration(
   color: Colors.white,
 );
 
-var kAnimeCardDecoration = (String imgURL) => BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: [
-        BoxShadow(
-          offset: Offset(0, 2),
-          blurRadius: 30,
-          color: Color(0xFFB7B7B7).withOpacity(0.7),
-        ),
-      ],
-      image: DecorationImage(
-        image: NetworkImage(imgURL),
-        alignment: Alignment.topCenter,
-        fit: BoxFit.fill,
-      ),
-    );
+var kBoxShadow = [
+  BoxShadow(
+    offset: Offset(0, 2),
+    blurRadius: 10,
+    color: Colors.grey.withOpacity(0.5),
+  ),
+];
+
+Function kAnimeCardDecoration = (String imgURL) {
+  return BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    boxShadow: kBoxShadow,
+    image: DecorationImage(
+      image: NetworkImage(imgURL),
+      alignment: Alignment.topCenter,
+      fit: BoxFit.fill,
+    ),
+  );
+};
