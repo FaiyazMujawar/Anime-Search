@@ -63,7 +63,7 @@ Future<List<Map<String, dynamic>>> getAnimeByName(String name) async {
             'url': anime['url'],
             'title': anime['title'],
             'image_url': anime['image_url'],
-            'about': anime['synosis'],
+            'about': anime['synopsis'],
             'type': anime['type'],
             'episodes': anime['episodes'],
             'score': score.toStringAsFixed(1),

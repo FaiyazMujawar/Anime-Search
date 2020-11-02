@@ -2,7 +2,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import '../screens/SearchScreen.dart';
+import '../screens/SearchAnimePage.dart';
 import '../screens/TopAnimesPage.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     _pageController = PageController();
-    _currentIndex = 0;
+    _currentIndex = 1;
     super.initState();
   }
 
@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               children: [
                 TrendingPage(),
-                SearchScreen(),
+                SearchAnimePage(),
               ],
             ),
           ),

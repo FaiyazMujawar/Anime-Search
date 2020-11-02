@@ -27,7 +27,10 @@ class AnimeEpisodeCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: Text(name),
+                  ),
                   SizedBox(
                     height: 5,
                   ),
