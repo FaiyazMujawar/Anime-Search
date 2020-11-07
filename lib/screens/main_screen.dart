@@ -1,9 +1,9 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import '../screens/SearchAnimePage.dart';
-import '../screens/TopAnimesPage.dart';
+import 'search_anime_page.dart';
+import 'top_animes_page.dart';
+import '../components/CustomNavigationBar.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -17,14 +17,14 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     _pageController = PageController();
-    _currentIndex = 1;
+    _currentIndex = 0;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SafeArea(
         child: Center(
           child: SizedBox.expand(
             child: PageView(
@@ -35,33 +35,33 @@ class _MainScreenState extends State<MainScreen> {
                 });
               },
               children: [
-                TrendingPage(),
+                TopAnimesPage(),
                 SearchAnimePage(),
               ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavyBar(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      bottomNavigationBar: CustomBottomNavigationBar(
         selectedIndex: _currentIndex,
-        onItemSelected: (index) {
-          _currentIndex = index;
-          _pageController.animateToPage(index,
-              duration: Duration(milliseconds: 300), curve: Curves.ease);
+        onChange: (index) {
+          setState(() {
+            _currentIndex = index;
+            _pageController.animateToPage(
+              index,
+              duration: Duration(milliseconds: 200),
+              curve: Curves.easeIn,
+            );
+          });
         },
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-            icon: Icon(Ionicons.md_trophy),
-            title: Text("Top Charts"),
-            activeColor: Colors.purple.shade500,
-            textAlign: TextAlign.center,
+        navItems: <CustomBottomNavigationBarItem>[
+          CustomBottomNavigationBarItem(
+            icon: Icons.bar_chart,
+            title: 'Top Animes',
           ),
-          BottomNavyBarItem(
-            icon: Icon(Feather.search),
-            title: Text("Search"),
-            activeColor: Colors.orange.shade800,
-            textAlign: TextAlign.center,
+          CustomBottomNavigationBarItem(
+            icon: Feather.search,
+            title: 'Search',
           ),
         ],
       ),

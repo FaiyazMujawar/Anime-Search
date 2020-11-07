@@ -19,12 +19,13 @@ class SubtitledImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Card(
-        elevation: 3,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(5, 15, 5, 10),
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.network(
                 url,
@@ -33,10 +34,11 @@ class SubtitledImage extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               Text(
                 subtitle,
+                style: kBodyTextStyle,
               ),
             ],
           ),

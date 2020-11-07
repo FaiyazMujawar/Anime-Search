@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:anime_search/data_access/AnimeData.dart';
+import 'package:anime_search/data_access/anime_data.dart';
 
 main(List<String> args) async {
   dynamic data = await getAnimeById(30276);
