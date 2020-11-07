@@ -46,6 +46,27 @@ var kInputDecorationStyle = InputDecoration(
   ),
 );
 
+Function kSnackBar = (String msg) => SnackBar(
+      backgroundColor: kAccentColor,
+      elevation: 5,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+        vertical: 10,
+      ),
+      duration: Duration(seconds: 2),
+      content: Container(
+        height: 30,
+        child: Center(
+          child: Text(
+            msg,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+
 // Colors
 
 const kPrimaryColor = Color(0xFF000e2e);

@@ -3,7 +3,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'search_anime_page.dart';
 import 'top_animes_page.dart';
-import '../components/CustomNavigationBar.dart';
+import '../components/cutom_navigation_bar.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -30,9 +30,9 @@ class _MainScreenState extends State<MainScreen> {
             child: PageView(
               controller: _pageController,
               onPageChanged: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
+                setState(
+                  () => _currentIndex = index,
+                );
               },
               children: [
                 TopAnimesPage(),
@@ -45,18 +45,20 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: CustomBottomNavigationBar(
         selectedIndex: _currentIndex,
         onChange: (index) {
-          setState(() {
-            _currentIndex = index;
-            _pageController.animateToPage(
-              index,
-              duration: Duration(milliseconds: 200),
-              curve: Curves.easeIn,
-            );
-          });
+          setState(
+            () {
+              _currentIndex = index;
+              _pageController.animateToPage(
+                index,
+                duration: Duration(milliseconds: 200),
+                curve: Curves.easeIn,
+              );
+            },
+          );
         },
         navItems: <CustomBottomNavigationBarItem>[
           CustomBottomNavigationBarItem(
-            icon: Icons.bar_chart,
+            icon: MaterialCommunityIcons.trophy_award,
             title: 'Top Animes',
           ),
           CustomBottomNavigationBarItem(

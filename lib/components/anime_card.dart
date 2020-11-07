@@ -53,7 +53,8 @@ class AnimeCard extends StatelessWidget {
                 ),
                 trailing: IconButton(
                   icon: Icon(
-                    SimpleLineIcons.arrow_right_circle,
+                    Ionicons.ios_arrow_forward,
+                    size: 30,
                     color: kAccentColor,
                   ),
                   onPressed: () {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /**
  * Returns a list with details of top rated animes.
@@ -170,4 +171,14 @@ Future<Map<String, dynamic>> getEpisodesByAnimeId(int id) async {
     'hasMoreEpisodes': hasMoreEpisodes,
     'episodes': episodesList,
   };
+}
+
+/**
+ * Launches the specified [url] in the browser.
+ */
+Future<bool> launchURL(String url) async {
+  if (await canLaunch(url)) {
+    return await launch(url);
+  }
+  return false;
 }

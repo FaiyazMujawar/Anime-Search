@@ -43,7 +43,9 @@ class _AnimePageState extends State<AnimePage> {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : _hasConnection ? _body : NoInternetWidget(),
+            : _hasConnection
+                ? _body
+                : NoInternetWidget(),
       ),
     );
   }
@@ -222,13 +224,10 @@ class _AnimePageState extends State<AnimePage> {
     } else {
       animePageContents.addAll(episodes
           .map(
-            (episode) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: AnimeEpisodeCard(
-                name: episode['title'],
-                url: episode['url'],
-                id: episode['id'],
-              ),
+            (episode) => AnimeEpisodeCard(
+              name: episode['title'],
+              url: episode['url'],
+              id: episode['id'],
             ),
           )
           .toList());
@@ -247,10 +246,15 @@ class _AnimePageState extends State<AnimePage> {
           trailing: IconButton(
             icon: Icon(
               Ionicons.ios_arrow_forward,
-              color: Colors.blue.shade800,
+              size: 30,
+              color: kAccentColor,
             ),
-            onPressed: () {
-              print('object');
+            onPressed: () async {
+              if (!(await launchURL(anime['url']))) {
+                Scaffold.of(context).showSnackBar(
+                  kSnackBar('Oops! Unable to open the anime page!'),
+                );
+              }
             },
           ),
         ),

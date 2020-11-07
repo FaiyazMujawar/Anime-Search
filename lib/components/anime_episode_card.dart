@@ -1,3 +1,4 @@
+import 'package:anime_search/data_access/anime_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
@@ -51,10 +52,20 @@ class AnimeEpisodeCard extends StatelessWidget {
             ),
             trailing: IconButton(
               icon: Icon(
-                SimpleLineIcons.arrow_right_circle,
+                Icons.open_in_new,
                 color: kAccentColor,
               ),
-              onPressed: null,
+              onPressed: () async {
+                if ((await launchURL(url))) {
+                  Scaffold.of(context).showSnackBar(
+                    kSnackBar('Please switch to desktop mode!'),
+                  );
+                } else {
+                  Scaffold.of(context).showSnackBar(
+                    kSnackBar('Oops! Unable to open the episode!'),
+                  );
+                }
+              },
             ),
           ),
         ),

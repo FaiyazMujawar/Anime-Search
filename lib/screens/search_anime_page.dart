@@ -69,8 +69,10 @@ class _SearchAnimePageState extends State<SearchAnimePage> {
                           )
                         ],
                       ),
-                      Container(
-                        child: _body,
+                      Expanded(
+                        child: Container(
+                          child: _body,
+                        ),
                       ),
                     ],
                   )
@@ -87,6 +89,9 @@ class _SearchAnimePageState extends State<SearchAnimePage> {
   }
 
   Future<void> buildSearchAnimePage() async {
+    setState(() {
+      _body = Center(child: CircularProgressIndicator());
+    });
     List<Widget> searchAnimePageContents = <Widget>[
       Padding(
         padding: const EdgeInsets.symmetric(
@@ -98,26 +103,20 @@ class _SearchAnimePageState extends State<SearchAnimePage> {
           style: kHeadingTextStyle,
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      )
     ];
 
-    setState(() {
-      _body = Expanded(
-        child: ListView.builder(
-          itemCount: searchAnimePageContents.length,
-          itemBuilder: (context, index) {
-            return searchAnimePageContents[index];
-          },
-        ),
-      );
-    });
-
     List<Map<String, dynamic>> animes = await getAnimeByName(_animeName);
+
+    if (animes.length == 0) {
+      setState(() {
+        _body = Center(
+          child: Text(
+            'No anime found!',
+          ),
+        );
+      });
+      return;
+    }
 
     searchAnimePageContents.removeLast();
 
@@ -131,13 +130,11 @@ class _SearchAnimePageState extends State<SearchAnimePage> {
 
     setState(
       () {
-        _body = Expanded(
-          child: ListView.builder(
-            itemCount: searchAnimePageContents.length,
-            itemBuilder: (context, index) {
-              return searchAnimePageContents[index];
-            },
-          ),
+        _body = ListView.builder(
+          itemCount: searchAnimePageContents.length,
+          itemBuilder: (context, index) {
+            return searchAnimePageContents[index];
+          },
         );
       },
     );
